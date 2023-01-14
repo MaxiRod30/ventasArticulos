@@ -147,7 +147,6 @@ function menuItem(Datos,filtro) {
          }
     } while(option != "0")
 
- 
  }
 function agregarCompras(listaCompras,obj) {
     // Agrego obejto al array
