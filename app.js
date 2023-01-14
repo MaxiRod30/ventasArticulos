@@ -102,7 +102,7 @@ let eleccion = "";
 
 function menuPrincipal() {
    let option =  prompt(`Bienvenido a ventas de articulos para la industria.
-    Seleccione lo que desee comprar:
+    Seleccione lo que desea comprar:
     
     0 - Salir
     1 - Contactores
