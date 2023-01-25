@@ -14,3 +14,5 @@ class Producto {
         console.log(`El producto es ${this.nombre} / marcha ${this.marca}, el precio es ${this.precio} y su precio es ${this.precio}`)
     }
 }
+
+module.exports = Producto;
