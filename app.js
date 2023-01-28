@@ -160,27 +160,30 @@ function menuItem(Datos,filtro) {
      let index = 1
      let option
 
-     Datos.forEach(e => {
-         if(e.nombre.toUpperCase() === filtro.toUpperCase())
-         {
-             obj.push(e)
-             msg = msg + "\n" +"            "+index +" - "+e.marca.toUpperCase() + " - Precio: "+e.precio;
-             index++;
-         }
-     })
-    do{
-         option =  prompt(`
-         Seleccione el modelo de ${filtro} que desee comprar:
-         
-             ${msg}
-         ` )
-         if (!isNaN(option) && parseInt(option)<index){
-             return obj[parseInt(option)-1]
-          }else{
-             alert(`Escriba la opcion elegida mediante el numero al comienzo`)
-          }
-     } while(option != "0")
- 
+    if(filtro != undefined){
+
+        Datos.forEach(e => {
+            if(e.nombre.toUpperCase() === filtro)
+            {
+                obj.push(e)
+                msg = msg + "\n" +"            "+index +" - "+e.marca.toUpperCase() + " - Precio: "+e.precio;
+                index++;
+            }
+        })
+        do{
+            option =  prompt(`
+            Seleccione el modelo de ${filtro} que desee comprar:
+            
+                ${msg}
+            ` )
+            if (!isNaN(option) && parseInt(option)<index){
+                return obj[parseInt(option)-1]
+            }else{
+                alert(`Escriba la opcion elegida mediante el numero al comienzo`)
+            }
+        } while(option != "0")
+    }
+     
 }
 function menuNombres(datos) {
 
@@ -206,7 +209,7 @@ function menuNombres(datos) {
         
             ${msg}
         ` )
-        if (!isNaN(option) && parseInt(option)<index){
+        if (!isNaN(option) && parseInt(option)<index ){
             return nombres[parseInt(option)]
          }else{
             alert(`Escriba la opcion elegida mediante el numero al comienzo`)
@@ -247,16 +250,23 @@ function borrarProducto(listaCompra){
       }
       msg = msg + "\n\n" + "Precio total = $ " + precioTotal
 
-    let opcionEliminar = parseInt(prompt(`Ingrese el id a eliminar
-    
-    ${msg}
-    `))
+    let opcionEliminar = 0
 
-    let objID = listaCompra.map(e => e.id)
-    let indice = objID.indexOf(opcionEliminar)
+     do{
+        if (isNaN(opcionEliminar))
+        {
+            alert("Escriba numeros!")
+        }
+        
+        opcionEliminar = parseInt(parseInt(prompt(`Ingrese el numero a eliminar
     
-    listaCompra.splice(indice,1)
+        ${msg}
+        `)))
 
+    }while (isNaN(opcionEliminar))
+
+    listaCompra.splice(opcionEliminar,1)
+    alert("Se borro correctamente!")
  }
  function finalizarCompras(listaCompras) {
     let option =""
