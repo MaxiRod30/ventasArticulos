@@ -1,3 +1,4 @@
+
 const baseDeDatos = [
     {
         id: 1,
@@ -98,56 +99,124 @@ const baseDeDatos = [
 
 ];
 let carritoCompras = [];
-let eleccion = "";
 
+
+//Class Producto
+class Producto {
+    constructor(id, nombre, descripcion, marca, precio,img )
+    {
+        this.id = id,
+        this.nombre = nombre,
+        this.descripcion = descripcion,
+        this.marca = marca, 
+        this.precio = precio,
+        this.img = img
+    }
+    //métodos
+    verProducto(){
+        console.log(`El producto es ${this.nombre} / marcha ${this.marca}, el precio es ${this.precio} y su precio es ${this.precio}`)
+    }
+}
+
+function agregarProducto(Datos){
+    let nombre = prompt("Ingrese el nombre del producto")
+    let descripcion = prompt("Ingrese la descripcion del producto")
+    let marca = prompt("Ingrese la marca del producto")
+    let precio = parseInt(prompt("Ingrese el precio del producto"))
+    // verificacion numerica
+    while (isNaN(precio)) {
+        alert("Escriba numeros!")
+        precio = parseInt(prompt("Ingrese el precio del producto"))
+    }
+    
+    let img = ""
+
+    const nuevoProducto = new Producto(Datos.length+1, nombre, descripcion,marca,precio,img)
+    Datos.push(nuevoProducto)
+
+ }
 function menuPrincipal() {
-   let option =  prompt(`Bienvenido a ventas de articulos para la industria.
-    Seleccione lo que desea comprar:
-    
-    0 - Salir
-    1 - Contactores
-    2 - PLCs
-    3 - HMI
-    4 - Reles termicos
-
-    Otras opciones:
-
-    5 - Ver Compra
-    6 - Vaciar compra
-    7 - Finalizar compra
-    
-    ` )
-
-    return option;
-
+    let option =  prompt(`Bienvenido a ventas de articulos para la industria.
+     Seleccione lo que desea comprar:
+     
+     0 - Salir
+     1 - Ver productos
+     2 - Agregar nuevos productos
+ 
+     Otras opciones:
+ 
+     3 - Ver Compra
+     4 - Borrar producto de compra
+     5 - Finalizar compra
+     
+     ` )
+ 
+     return option;
+ 
 }
 function menuItem(Datos,filtro) {
-    let msg = "0 - Salir"
-    let obj=[]
-    let index = 1
+     let msg = "0 - Salir"
+     let obj=[]
+     let index = 1
+     let option
 
-    Datos.forEach(e => {
-        if(e.nombre === filtro)
+     Datos.forEach(e => {
+         if(e.nombre.toUpperCase() === filtro.toUpperCase())
+         {
+             obj.push(e)
+             msg = msg + "\n" +"            "+index +" - "+e.marca.toUpperCase() + " - Precio: "+e.precio;
+             index++;
+         }
+     })
+    do{
+         option =  prompt(`
+         Seleccione el modelo de ${filtro} que desee comprar:
+         
+             ${msg}
+         ` )
+         if (!isNaN(option) && parseInt(option)<index){
+             return obj[parseInt(option)-1]
+          }else{
+             alert(`Escriba la opcion elegida mediante el numero al comienzo`)
+          }
+     } while(option != "0")
+ 
+}
+function menuNombres(datos) {
+
+    let msg = "0 - Salir"
+    let nombres =[]
+    let index = 1
+    let filtro = ""
+    let option
+
+    datos.forEach(e => {
+        if(e.nombre.toUpperCase() != filtro.toUpperCase())
         {
-            obj.push(e)
-            msg = msg + "\n" +"            "+index +" - "+e.marca.toUpperCase() + " - Precio: "+e.precio;
+            nombres[index] = e.nombre.toUpperCase()
+            msg = msg + "\n" +"            "+index +" - "+e.nombre.toUpperCase();
+            filtro = e.nombre.toUpperCase()
             index++;
         }
     })
-   do{
-        let option =  prompt(`
-        Seleccione el modelo de ${filtro} que desee comprar:
+    //------------ Opciones-----------------------
+    do{
+        option =  prompt(`
+        Seleccione el nombre del producto a comprar:
         
             ${msg}
         ` )
         if (!isNaN(option) && parseInt(option)<index){
-            return obj[parseInt(option)-1]
+            return nombres[parseInt(option)]
          }else{
             alert(`Escriba la opcion elegida mediante el numero al comienzo`)
          }
     } while(option != "0")
+    
 
- }
+    
+
+}
 function agregarCompras(listaCompras,obj) {
     // Agrego obejto al array
     listaCompras.push(obj);
@@ -167,10 +236,27 @@ function listarCompras(listaCompras) {
     alert(msg)
     return precioTotal
  }
- function vaciarCompras() {
-    //Vaciar el array de compras
-    alert("Se borro correctamente la lista! ");
-    return [];
+function borrarProducto(listaCompra){
+    
+    let msg = "Lista de compras:"
+    let precioTotal = 0;
+
+    for (let i = 0; i < listaCompra.length; i++) {
+            msg = msg + "\n" +i +" - "+ listaCompra[i].nombre.toUpperCase() + " - Precio: $"+ listaCompra[i].precio + " - Marca: " + listaCompra[i].marca.toUpperCase()
+            precioTotal = precioTotal + listaCompra[i].precio
+      }
+      msg = msg + "\n\n" + "Precio total = $ " + precioTotal
+
+    let opcionEliminar = parseInt(prompt(`Ingrese el id a eliminar
+    
+    ${msg}
+    `))
+
+    let objID = listaCompra.map(e => e.id)
+    let indice = objID.indexOf(opcionEliminar)
+    
+    listaCompra.splice(indice,1)
+
  }
  function finalizarCompras(listaCompras) {
     let option =""
@@ -211,6 +297,8 @@ function listarCompras(listaCompras) {
  }
 
  // -----------------------------------------
+let eleccion = "";
+
 while (eleccion != "0") {
 
     //Mostrar menu principal
@@ -219,51 +307,34 @@ while (eleccion != "0") {
     if (!isNaN(eleccion)){
         switch (parseInt(eleccion)) {
             case 1:
-                //Mostrar menu de contactores
-                let opcionContactor = menuItem(baseDeDatos,"Contactor");
-                if (opcionContactor != undefined )
+                //Mostrar nombre de productos y elegir comprar
+                let opcionNombre = menuNombres(baseDeDatos)
+                let opcionCompra = menuItem(baseDeDatos, opcionNombre)
+                if (opcionCompra != undefined )
                 {
-                    agregarCompras(carritoCompras,opcionContactor)
+                    agregarCompras(carritoCompras,opcionCompra)
                 }
                 
                 break;
             case 2:
-                //Mostrar menu de PLC
-                let opcionPLC = menuItem(baseDeDatos,"PLC");
-                if (opcionPLC != undefined )
-                {
-                    agregarCompras(carritoCompras,opcionPLC)
-                }
+                //Agregar producto nuevo
+                agregarProducto(baseDeDatos);
                 break;   
             case 3:
-                //Mostrar menu de HMI
-                let opcionHMI = menuItem(baseDeDatos,"HMI");
-                if (opcionHMI != undefined )
-                {
-                    agregarCompras(carritoCompras,opcionHMI)
-                }
-                
+                //Mostrar menu de Ver Compra
+                listarCompras(carritoCompras);  
+
                 break;
             case 4:
-                //Mostrar menu de rele termico
-                let opcionRT = menuItem(baseDeDatos,"rele termico");
-                if (opcionRT != undefined ){
-                    agregarCompras(carritoCompras,opcionRT)
-                }
+                //Eliminar producto 
+                borrarProducto(carritoCompras)
+                //carritoCompras = vaciarCompras(carritoCompras);
                 break;
             case 5:
-                //Mostrar menu de Ver Compra
-                listarCompras(carritoCompras);
-                break;
-            case 6:
-                //Vaciar compra
-                carritoCompras = vaciarCompras(carritoCompras);
-            break;
-            case 7:
                 //Mostrar menu de Finalizar compra
                 finalizarCompras(carritoCompras)
                 carritoCompras = vaciarCompras(carritoCompras);
-            break;
+                break;
 
             default:
                 if (parseInt(eleccion)!= 0)
