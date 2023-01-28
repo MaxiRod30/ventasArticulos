@@ -6,36 +6,33 @@ Consiste en un programa de ventas de articulos de electronica, donde vamos a pod
 
  ```  
 Bienvenido a ventas de articulos para la industria.
-    Seleccione lo que desea comprar:
+     Seleccione lo que desea comprar:
+     
+     0 - Salir
+     1 - Ver productos
+     2 - Agregar nuevos productos
  
-    0 - Salir
-    1 - Contactores
-    2 - PLCs
-    3 - HMI
-    4 - Reles termicos
-
-    Otras opciones:
-
-    5 - Ver Compra
-    6 - Vaciar compra
-    7 - Finalizar compra
+     Otras opciones:
+ 
+     3 - Ver Compra
+     4 - Borrar producto de compra
+     5 - Finalizar compra
+     
 
 ```
 Mediante el numero inicial se accede a la accion correspondiente.
 
-### Las opciones 1,2,3 y 4 son los articulos que podemos comprar
+### Las opciones 1,2 son los articulos que podemos comprar o agregar a nuestra pagina
 
 
  ```      
-    1 - Contactores
-    2 - PLCs
-    3 - HMI
-    4 - Reles termicos
+     1 - Ver productos
+     2 - Agregar nuevos productos
     
  ```
- Dentro de cada opcion tenemos 3 productos distintos para poder elegir.
+ Dentro de cada opcion tenemos 3 productos distintos para poder elegir(por defecto).
 
- ### La opcion 5 nos permite listar lo que vamos comprando
+ ### La opcion 3 nos permite listar lo que vamos comprando
 
  Ejemplo de un listado elegido:
 
@@ -49,6 +46,6 @@ Mediante el numero inicial se accede a la accion correspondiente.
     
  ```
 
-  ### La opcion 6 nos permite vaciar la lista de compras
+  ### La opcion 4 nos permite borrar un producto que eligamos de la lista de compras
 
-  ### La opcion 7 nos permite finalizar la compra agregando nuestro nombre,direccion y telefono.
+  ### La opcion 5 nos permite finalizar la compra agregando nuestro nombre,direccion y telefono.
