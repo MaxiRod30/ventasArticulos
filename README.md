@@ -1,6 +1,6 @@
-# Segunda entrega del curso de Javascript (Maximiliano Rodriguez)
+# Tercera entrega del curso de Javascript (Maximiliano Rodriguez)
 
-Consiste en un programa de ventas de articulos de electronica, donde vamos a poder comprar algunos articulos listados en la base de datos(array). Mediante prompt vamos a poder realizar todas esas operaciones.
+Consiste en un programa de ventas de articulos de electronica, donde vamos a poder comprar algunos articulos listados en la base de datos(array). Mediante paginas html podremos interactuar con la pagina
 
 ## Menu principal
 
