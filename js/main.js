@@ -50,17 +50,20 @@ function renderProductos(array, div){
 }
 
 function agregarCarrito(producto,carrito){
-
-    if(producto.cantidad == 0) carrito.push(producto)  
-    
-    ++producto.cantidad
-
+    let bandera = false
     // Actualizo cantidad
     carrito.forEach(prod => {
-        if(prod.id == producto.id )
-            prod.cantidad = producto.cantidad
-    });
- 
+        if(prod.id == producto.id){
+            ++prod.cantidad
+            bandera = true
+        }
+    })
+
+    if (!bandera) {
+        ++producto.cantidad
+        carrito.push(producto)
+    }
+
     localStorage.setItem("carritoCompras", JSON.stringify(carrito))
 
     Toastify({

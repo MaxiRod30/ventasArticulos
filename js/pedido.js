@@ -8,10 +8,17 @@ function borrarProducto(carrito, prodEliminar){
         let carritoID = carrito.map(producto => producto.id)
         let indice = carritoID.indexOf(prodEliminar.id)
         carrito.splice(indice,1)
-        localStorage.setItem("carritoCompras", JSON.stringify(carrito))
+        
     }else{
         prodEliminar.cantidad = prodEliminar.cantidad - 1
+
+        carrito.forEach(prod => {
+            if(prod.id == prodEliminar.id )
+                prod.cantidad = prodEliminar.cantidad
+        });   
     }
+
+    localStorage.setItem("carritoCompras", JSON.stringify(carrito))
 }
 
 function renderProductosEnCarrito(array, div){
@@ -59,6 +66,11 @@ function renderProductosEnCarrito(array, div){
 
             let btnCarrito = document.getElementById(`btnCarrito${producto.id}`)
             btnCarrito.onclick = ()=>{
+
+                if(localStorage.getItem("carritoCompras")){
+                    carritoCompras = JSON.parse(localStorage.getItem("carritoCompras")) 
+                }
+
                 borrarProducto(carritoCompras,producto)
                 renderProductosEnCarrito(carritoCompras,productosEnCarritoDiv)
             }
