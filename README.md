@@ -13,5 +13,3 @@ Consiste en un programa de ventas de articulos de electronica, donde vamos a pod
 #Pagina de pedido
 
 ![image](https://user-images.githubusercontent.com/55286302/218200078-a547e330-dd65-4c76-8fa0-3e4df1f3030c.png)
-
-
