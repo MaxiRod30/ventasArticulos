@@ -34,7 +34,8 @@ function agregarProducto(array , storage) {
             showConfirmButton: false,
             timer: 1500
           })
-
+          
+          window.location.href = "..//productos.html"
           renderProductos(baseDeDatos,productosDiv)
 
     }else{
@@ -66,7 +67,7 @@ function borrarProducto(array, storage){
         },
         inputValue: 1
       }).then((result) =>{
-        console.log(result)
+       
         if (result.isConfirmed){
             array.splice(result.value-1,1)
             localStorage.setItem(storage, JSON.stringify(array))
@@ -78,7 +79,8 @@ function borrarProducto(array, storage){
                 timer: 1500
               })
               
-          renderProductos(baseDeDatos,productosDiv)
+        window.location.href = "..//productos.html"
+        renderProductos(baseDeDatos,productosDiv)
 
 
         }

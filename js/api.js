@@ -1,4 +1,4 @@
-let APIkey = '09bface450259ea239a32fba8129b3d0'
+let APIkey = ''
 
 function clima(){
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=montevideo&units=metric&appid=${APIkey}`)
