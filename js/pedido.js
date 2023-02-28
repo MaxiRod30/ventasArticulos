@@ -27,7 +27,7 @@ function renderProductosEnCarrito(array, div){
                         <div class="col-md-10">
                             <div class="row p-2 bg-white border rounded">
                                 <div class="col-md-2 mt-1"><img class="img-fluid img-responsive rounded product-image"
-                                        src="/asset/img/${producto.img}"></div>
+                                        src="asset/img/${producto.img}"></div>
                                 <div class="col-md-6 mt-1">
                                     <h5>${producto.nombre}</h5>
                                     <div class="d-flex flex-row">
