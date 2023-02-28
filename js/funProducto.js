@@ -35,7 +35,7 @@ function agregarProducto(array , storage) {
             timer: 1500
           })
           
-          window.location.href = "ventasArticulos/productos.html"
+          window.location.href = "productos.html"
           renderProductos(baseDeDatos,productosDiv)
 
     }else{
@@ -79,7 +79,7 @@ function borrarProducto(array, storage){
                 timer: 1500
               })
               
-        window.location.href = "ventasArticulos/productos.html"
+        window.location.href = "productos.html"
         renderProductos(baseDeDatos,productosDiv)
 
 
