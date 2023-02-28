@@ -18,12 +18,17 @@ Mediante paginas html podremos interactuar con todas las funcionalidades.
 
 #Pagina Inicial
 
-![image](https://user-images.githubusercontent.com/55286302/218199633-86e73fc7-15ed-413c-bc8e-6db85d6b813b.png)
+![Captura](https://user-images.githubusercontent.com/55286302/221913576-25076f1c-f583-4580-a5a8-95becc58ac25.PNG)
+
+![Captura1](https://user-images.githubusercontent.com/55286302/221913593-f950f137-509b-4ecb-99cf-878c3bb6be23.PNG)
+
+![Captura2](https://user-images.githubusercontent.com/55286302/221913603-de943239-c9a4-4fab-b736-e8e4f48a4106.PNG)
 
 #Pagina de productos en ventas
 
-![image](https://user-images.githubusercontent.com/55286302/218199905-d3802dd2-bff7-48d8-a5cc-ad7964cbad3a.png)
+![CapturaProductos](https://user-images.githubusercontent.com/55286302/221913639-2962816c-ea75-45fe-a48e-2178562c4541.PNG)
 
 #Pagina de pedido
 
-![image](https://user-images.githubusercontent.com/55286302/218200078-a547e330-dd65-4c76-8fa0-3e4df1f3030c.png)
+![pedido](https://user-images.githubusercontent.com/55286302/221913707-69650a0a-49b9-4b66-8114-8a031eafc7d0.PNG)
+
