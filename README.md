@@ -1,6 +1,20 @@
-# Tercera entrega del curso de Javascript (Maximiliano Rodriguez)
+# Entrega final del curso de Javascript (Maximiliano Rodriguez)
 
-Consiste en un programa de ventas de articulos de electronica, donde vamos a poder comprar algunos articulos listados en la base de datos(array). Mediante paginas html podremos interactuar con la pagina
+Herramientas utilizadas:
+
+  - HTML
+  - CSS  
+  - Bootstrap
+  - JSON
+  - Promesas
+  - Toastify
+  - SweetAlert
+  - API openweathermap
+  
+
+Consiste en un proyecto de ventas de articulos de electronica para la insdustria, donde vamos a poder utilizar el carrito de compras, listar en la base de datos los articulos elegidos, filtralo por precio o por nombre, crear un nuevo producto como tambien eliminarlo. 
+Mediante paginas html podremos interactuar con todas las funcionalidades.
+
 
 #Pagina Inicial
 

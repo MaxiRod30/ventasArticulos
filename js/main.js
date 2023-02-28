@@ -2,6 +2,8 @@
 let productosDiv = document.getElementById("productos")
 let coincidenciaDiv = document.getElementById("coincidencia")
 let inputBuscador = document.getElementById("buscador")
+let loader = document.getElementById("loader")
+let busq = document.getElementById("optionOrden")
 
 function renderProductos(array, div){
     //Limpiar div
@@ -17,7 +19,7 @@ function renderProductos(array, div){
                     <div class="col-md-10">
                         <div class="row p-2 bg-white border rounded">
                             <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
-                                    src="${producto.img}"></div>
+                                    src="../asset/img/${producto.img}"></div>
                             <div class="col-md-6 mt-1">
                                 <h5>${producto.nombre}</h5>
                                 <div class="d-flex flex-row">
@@ -40,31 +42,31 @@ function renderProductos(array, div){
         div.appendChild(newDiv)
         let btnCarrito = document.getElementById(`btnCarrito${producto.id}`)
         btnCarrito.onclick = ()=>{
+           
 
-            if(localStorage.getItem("carritoCompras")){
-                carritoCompras = JSON.parse(localStorage.getItem("carritoCompras")) 
-            }
+            // if(localStorage.getItem("carritoCompras")){
+            //     carritoCompras = JSON.parse(localStorage.getItem("carritoCompras")) 
+            // }
             agregarCarrito(producto ,carritoCompras )
         }
     }
 }
 
-function agregarCarrito(producto,carrito){
+function agregarCarrito(producto,car){
     let bandera = false
-    // Actualizo cantidad
-    carrito.forEach(prod => {
+
+    car.forEach(prod => {
         if(prod.id == producto.id){
-            ++prod.cantidad
             bandera = true
+            prod.sumarUnidad()
         }
     })
-
+ 
     if (!bandera) {
-        ++producto.cantidad
-        carrito.push(producto)
+        car.push(producto)
     }
 
-    localStorage.setItem("carritoCompras", JSON.stringify(carrito))
+    localStorage.setItem("carritoCompras", JSON.stringify(car))
 
     Toastify({
 
@@ -90,9 +92,40 @@ function buscarProducto(productoBuscado, productos, coincidenciaDiv){
     : (coincidenciaDiv.innerHTML = "", renderProductos(busquedaProductos,productosDiv))
 }
 
+function ordMenorMayor(array){
+    const menorMayor = [].concat(array)
+    menorMayor.sort((param1, param2)=> param1.precio - param2.precio)
+    renderProductos(menorMayor,productosDiv)
+}
+
+function ordMayorMenor(array){
+    const mayorMenor = [].concat(array)
+    mayorMenor.sort((a,b)=> b.precio - a.precio)
+    renderProductos(mayorMenor,productosDiv)
+}
+
 //------Main------
 inputBuscador.addEventListener("input", ()=>{
     buscarProducto(inputBuscador.value.toLowerCase(), baseDeDatos, coincidenciaDiv)
 })
 
-renderProductos(baseDeDatos,productosDiv)
+busq.addEventListener("change", ()=>{
+
+    if(busq.value == "1"){
+        ordMayorMenor(baseDeDatos)
+    }else if(busq.value =="2"){
+        ordMenorMayor(baseDeDatos)
+    }else{
+        renderProductos(baseDeDatos,productosDiv)
+    }
+})
+
+
+
+setTimeout(()=>{
+
+    loader.remove()
+    renderProductos(baseDeDatos,productosDiv)
+
+},1500)
+
