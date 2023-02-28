@@ -48,5 +48,5 @@ if(localStorage.getItem("baseDeDatos")){
 
 }else{
     // Seteo por primera vez
-    cargarBaseDeDatos("../baseDatos.json", baseDeDatos ,"baseDeDatos")
+    cargarBaseDeDatos("baseDatos.json", baseDeDatos ,"baseDeDatos")
 }
