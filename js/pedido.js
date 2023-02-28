@@ -3,7 +3,7 @@ let productosEnCarritoDiv = document.getElementById("productosEnCarrito")
 let totalSpam = document.getElementById("total")
 let botonFinalizar = document.getElementById("btnFinalizar")
 
-function borrarProducto(carrito, prodEliminar){
+function eliminarProducto(carrito, prodEliminar){
 
     let carritoID = carrito.map(producto => producto.id)
     let indice = carritoID.indexOf(prodEliminar.id)
@@ -64,7 +64,7 @@ function renderProductosEnCarrito(array, div){
             let btnCarrito = document.getElementById(`btnCarrito${producto.id}`)
             btnCarrito.onclick = ()=>{
 
-                borrarProducto(carritoCompras,producto)
+                eliminarProducto(carritoCompras,producto)
                 renderProductosEnCarrito(carritoCompras,productosEnCarritoDiv)
             }
 
@@ -81,7 +81,7 @@ function renderProductosEnCarrito(array, div){
             btnRestar.onclick = ()=>{
 
                 if(producto.cantidad == 1){
-                    borrarProducto(carritoCompras,producto)
+                    eliminarProducto(carritoCompras,producto)
                     renderProductosEnCarrito(carritoCompras,productosEnCarritoDiv)
                 }else{
                     producto.restarUnidad()

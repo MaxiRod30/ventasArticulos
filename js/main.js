@@ -2,6 +2,8 @@
 let productosDiv = document.getElementById("productos")
 let coincidenciaDiv = document.getElementById("coincidencia")
 let inputBuscador = document.getElementById("buscador")
+let loader = document.getElementById("loader")
+let busq = document.getElementById("optionOrden")
 
 function renderProductos(array, div){
     //Limpiar div
@@ -90,9 +92,40 @@ function buscarProducto(productoBuscado, productos, coincidenciaDiv){
     : (coincidenciaDiv.innerHTML = "", renderProductos(busquedaProductos,productosDiv))
 }
 
+function ordMenorMayor(array){
+    const menorMayor = [].concat(array)
+    menorMayor.sort((param1, param2)=> param1.precio - param2.precio)
+    renderProductos(menorMayor,productosDiv)
+}
+
+function ordMayorMenor(array){
+    const mayorMenor = [].concat(array)
+    mayorMenor.sort((a,b)=> b.precio - a.precio)
+    renderProductos(mayorMenor,productosDiv)
+}
+
 //------Main------
 inputBuscador.addEventListener("input", ()=>{
     buscarProducto(inputBuscador.value.toLowerCase(), baseDeDatos, coincidenciaDiv)
 })
 
-renderProductos(baseDeDatos,productosDiv)
+busq.addEventListener("change", ()=>{
+
+    if(busq.value == "1"){
+        ordMayorMenor(baseDeDatos)
+    }else if(busq.value =="2"){
+        ordMenorMayor(baseDeDatos)
+    }else{
+        renderProductos(baseDeDatos,productosDiv)
+    }
+})
+
+
+
+setTimeout(()=>{
+
+    loader.remove()
+    renderProductos(baseDeDatos,productosDiv)
+
+},1500)
+
